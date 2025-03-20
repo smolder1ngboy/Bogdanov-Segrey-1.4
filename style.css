@@ -244,9 +244,7 @@ left: 0;
   display: flex;
 }
 
-.aside-menu{
-width: 222px;
-height: 876px;
+.aside-menu__navigation{
 margin: 0 0 32px 24px;
 }
 
@@ -332,15 +330,18 @@ margin: 0 0 32px 24px;
   transform: scaleY(1); 
 }
 
-.footer-menu__contact {
+.footer{
+  margin: 268px 0 0 24px;
+}
+
+.footer__contact {
 display: flex;
 justify-content: flex-start;
 list-style: none;
-margin: 268px 0 0 0;
 padding: 0;
 }
 
-.footer-menu__contact-item{
+.footer__contact-item{
   margin: 0 16px 16px 0;
   text-decoration: none;
 }
@@ -373,16 +374,20 @@ padding: 0;
 }
 
 .address__email{
+  all: unset;
+  font-style: normal;
+  margin: 16px 0 12px 0;
+}
+
+.email{
 font-family: "TT Lakes Bold";
 font-weight: 500;
 font-size: 16px;
 line-height: 24px;
 letter-spacing: -0.2px;
-}
-
-.address__email{
- color: inherit; 
- text-decoration: inherit;
+color: inherit; 
+text-decoration: inherit;
+margin: 16px 0 12px 0;
 }
 
 .address__email:hover{
@@ -396,27 +401,43 @@ letter-spacing: -0.2px;
 }
 
 .address__number{
+  all: unset;
+  font-style: normal;
+}
+
+.number{
 font-family: "TT Lakes Bold";
 font-weight: 700;
 font-size: 24px;
 line-height: 32px;
 letter-spacing: -0.6px;
+margin: 0 0 40px 0;
 }
 
-.footer-menu__language {
+.address__number:hover{
+  opacity: 0.5;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.address__number:not(:hover) {
+  transition: 0.3s;
+}
+
+.footer__language {
   display: flex;
   list-style: none;
   padding: 0;
 }
 
-.footer-menu__language-item {
+.language-button {
  padding: 0;
  background: none;
  border: none;
  margin: 0 7px 0 0;
 }
 
-.footer-menu__language-item:hover{
+.language-button:hover{
   color: #7E7E82;
   cursor: pointer;
 }
