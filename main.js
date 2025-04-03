@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+  let swiper;
+
   function initSwiper() {
-    new Swiper('.swiper-container', {
+    swiper = new Swiper('.swiper-container', {
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
@@ -12,30 +14,50 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  if (window.matchMedia('(max-width: 512px)').matches) {
-    initSwiper();
+  function destroySwiper() {
+    if (swiper) {
+      swiper.destroy(true, true);
+      swiper = null;
+
+      const paginationContainer = document.querySelector('.swiper-pagination');
+      if (paginationContainer) {
+        paginationContainer.innerHTML = '';
+      }
+    }
   }
+
+  function checkSwiper() {
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      if (!swiper) {
+        initSwiper();
+      }
+    } else {
+      destroySwiper();
+    }
+  }
+
+  checkSwiper();
+  window.addEventListener('resize', checkSwiper);
 });
 
-const block1 = document.getElementById('slide-1');
-const block2 = document.getElementById('slide-2');
-const block3 = document.getElementById('slide-3');
-const showButton = document.getElementById('show');
-const hideButton = document.getElementById('hide');
-
-showButton.addEventListener('click', function () {
-  block1.style.display = 'flex';
-  block2.style.display = 'flex';
-  block3.style.display = 'flex';
-  showButton.style.display = 'none';
-  hideButton.style.display = 'flex';
-});
-
-hideButton.addEventListener('click', function () {
-  block1.style.display = 'none';
-  block2.style.display = 'none';
-  block3.style.display = 'none';
-  hideButton.style.display = 'none';
-  showButton.style.display = 'flex';
-});
+function buttonShow() {
+  let element1 = document.getElementById('slide-1');
+  let element2 = document.getElementById('slide-2');
+  let element3 = document.getElementById('slide-3');
+  let showButton = document.getElementById('show');
+  let showIcon = document.getElementById('show-icon');
+  if (element1.style.display === 'flex') {
+    showButton.textContent = 'Показать все';
+    showIcon.style.transform = "rotate(0deg)"
+    element1.style.display = 'none';
+    element2.style.display = 'none';
+    element3.style.display = 'none';
+  } else {
+    showButton.textContent = 'Скрыть';
+    showIcon.style.transform = "rotate(180deg)"
+    element1.style.display = 'flex';
+    element2.style.display = 'flex';
+    element3.style.display = 'flex';
+  }
+}
 
